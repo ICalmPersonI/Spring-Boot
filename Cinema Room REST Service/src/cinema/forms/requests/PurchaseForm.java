@@ -1,13 +1,14 @@
-package cinema.entities;
+package cinema.forms.requests;
 
-public class Place {
+public class PurchaseForm {
     private int row;
     private int column;
 
-    Place() {
+    PurchaseForm() {
+
     }
 
-    Place(int row, int column) {
+    PurchaseForm(int row, int column) {
         this.row = row;
         this.column = column;
     }

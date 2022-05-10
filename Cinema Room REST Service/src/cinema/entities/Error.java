@@ -1,13 +1,20 @@
 package cinema.entities;
 
-public class Error {
-    String error;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Error(String error) {
-        this.error = error;
+public class Error {
+    @JsonProperty("error")
+    private String message;
+
+    Error() {
+
     }
 
-    public String getError() {
-        return error;
+    public Error(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

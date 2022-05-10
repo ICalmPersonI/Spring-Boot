@@ -1,96 +1,96 @@
 package cinema.entities;
 
+import cinema.forms.responses.PurchaseForm;
+import cinema.forms.responses.ReturnForm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Stream;
-
 public class Cinema {
     @JsonProperty("total_rows")
-    private final int totalRows;
-
+    private int rows;
     @JsonProperty("total_columns")
-    private final int totalColumns;
-
+    private int columns;
     @JsonProperty("available_seats")
-    private final Ticket[] availableSeats;
+    private Seat[] seats;
 
-    private int currentIncome = 0;
-    private int numberOfPurchasedTickets = 0;
+    private int totalIncome;
 
-    public Cinema(int totalRows, int totalColumns) {
-        this.totalRows = totalRows;
-        this.totalColumns = totalColumns;
-        this.availableSeats = new Ticket[81];
+    private int availableSeats;
 
-        for (int index = 0, row = 1; row < totalRows + 1; row++) {
-            for (int column = 1; column < totalColumns + 1; index++, column++) {
-                availableSeats[index] = new Ticket(index, UUID.randomUUID(), row, column, row <= 4 ? 10 : 8);
+    private int purchasedTickets;
+
+
+    public Cinema() {}
+
+    public Cinema(int rows, int columns, Seat[] seats) {
+        this.rows = rows;
+        this.columns = columns;
+        this.seats = seats;
+        this.totalIncome = 0;
+        this.availableSeats = seats.length;
+        this.purchasedTickets = 0;
+    }
+
+    public Object bookSeat(int row, int column) {
+        Seat seat = find(row, column);
+        if (seat != null) {
+            if (!seat.isAvailable()) {
+                return new Error("The ticket has been already purchased!");
+            }
+            seat.book();
+            totalIncome += seat.getPrice();
+            availableSeats--;
+            purchasedTickets++;
+            return new PurchaseForm(seat.getToken(), seat);
+        }
+        return new Error("The number of a row or a column is out of bounds!");
+    }
+
+    public Object unbook(String token) {
+        Seat seat = findByToken(token);
+        if (seat != null) {
+            if (!seat.isAvailable()) {
+                seat.setAvailable(true);
+                totalIncome -= seat.getPrice();
+                availableSeats++;
+                purchasedTickets--;
+                return new ReturnForm(seat);
             }
         }
+        return new Error("Wrong token!");
     }
 
-    public int getTotalRows() {
-        return totalRows;
-    }
-
-    public int getTotalColumns() {
-        return totalColumns;
-    }
-
-    public Ticket[] getAvailableSeats() {
-        return availableSeats;
-    }
-
-    @JsonIgnore
-    public int getCurrentIncome() {
-        return currentIncome;
-    }
-
-    @JsonIgnore
-    public long getNumberOfAvailableSeats() {
-        return Stream.of(availableSeats).filter(elem -> !elem.isPurchased()).count();
-    }
-
-    @JsonIgnore
-    public int getNumberOfPurchasedTickets() {
-        return numberOfPurchasedTickets;
-    }
-
-    public Optional<Ticket> findTicketByUUID(String uuid) {
-        for (Ticket ticket : availableSeats) {
-            if (ticket.getId().compareTo(UUID.fromString(uuid)) == 0)
-                return Optional.of(ticket);
+    private Seat findByToken(String token) {
+        for (Seat s: seats) {
+            if (s.getToken().equals(token)) {
+                return s;
+            }
         }
-        return Optional.empty();
+        return null;
     }
-
-    public Optional<Ticket> findTicketByRowAndColumn(int row, int column) {
-        for (Ticket ticket : availableSeats) {
-            if (ticket.getRow() == row && ticket.getColumn() == column)
-                return Optional.of(ticket);
+    private Seat find(int row, int column) {
+        for (Seat s: seats) {
+            if (s.getRow() == row && s.getColumn() == column) {
+                return s;
+            }
         }
-        return Optional.empty();
+        return null;
     }
 
-    public String returnTicket(int index) {
-        availableSeats[index].setPurchased(false);
-        currentIncome = currentIncome - availableSeats[index].getPrice();
-        numberOfPurchasedTickets--;
-
-        return "{\n" +
-                "    \"returned_ticket\": {\n" +
-                "        \"row\": " + availableSeats[index].getRow() + ",\n" +
-                "        \"column\": " + availableSeats[index].getColumn() + ",\n" +
-                "        \"price\": " + availableSeats[index].getPrice() + "\n" +
-                "    }\n" +
-                "}";
+    @JsonIgnore
+    public Stats getStats() {
+        return new Stats(totalIncome, availableSeats, purchasedTickets);
     }
-    public void buyTicket(int index) {
-        availableSeats[index].setPurchased(true);
-        currentIncome = currentIncome + availableSeats[index].getPrice();
-        numberOfPurchasedTickets++;
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public Seat[] getSeats() {
+        return seats;
     }
 }

@@ -2,17 +2,19 @@ package cinema.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Status {
+public class Stats {
     @JsonProperty("current_income")
     private int currentIncome;
-
     @JsonProperty("number_of_available_seats")
-    private long numberOfAvailableSeats;
-
+    private int numberOfAvailableSeats;
     @JsonProperty("number_of_purchased_tickets")
     private int numberOfPurchasedTickets;
 
-    public Status(int currentIncome, long numberOfAvailableSeats, int numberOfPurchasedTickets) {
+    Stats() {
+
+    }
+
+    public Stats(int currentIncome, int numberOfAvailableSeats, int numberOfPurchasedTickets) {
         this.currentIncome = currentIncome;
         this.numberOfAvailableSeats = numberOfAvailableSeats;
         this.numberOfPurchasedTickets = numberOfPurchasedTickets;
@@ -22,11 +24,11 @@ public class Status {
         return currentIncome;
     }
 
-    public int getNumberOfPurchasedTickets() {
-        return numberOfPurchasedTickets;
+    public int getNumberOfAvailableSeats() {
+        return numberOfAvailableSeats;
     }
 
-    public long getNumberOfAvailableSeats() {
-        return numberOfAvailableSeats;
+    public int getNumberOfPurchasedTickets() {
+        return numberOfPurchasedTickets;
     }
 }

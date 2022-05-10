@@ -1,61 +1,66 @@
 package cinema;
 
-import cinema.entities.*;
+import cinema.entities.Cinema;
 import cinema.entities.Error;
+import cinema.entities.Seat;
+import cinema.entities.Stats;
+import cinema.forms.requests.PurchaseForm;
+import cinema.forms.requests.ReturnForm;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
+import java.util.UUID;
 
 @RestController
 public class Controller {
 
-    private final Cinema cinema = new Cinema(9, 9);
+    private final int TOTAL_ROWS = 9;
+    private final int TOTAL_COLUMNS = 9;
+    private final Cinema cinema;
 
-    @PostMapping("/stats")
-    public ResponseEntity<?> stats(@RequestParam (value = "password") Optional<String> password) {
-        if (password.isPresent() && "super_secret".equals(password.get())) {
-            return  ResponseEntity.ok(new Status(cinema.getCurrentIncome(),
-                    cinema.getNumberOfAvailableSeats(),
-                    cinema.getNumberOfPurchasedTickets()));
-        } else {
-            return ResponseEntity.status(401).body(new Error("The password is wrong!"));
+    Controller() {
+        Seat[] seats = new Seat[TOTAL_ROWS * TOTAL_COLUMNS];
+        for (int index = 0, rowIndex = 0; index < seats.length; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < TOTAL_COLUMNS; columnIndex++, index++) {
+                seats[index] = new Seat(UUID.randomUUID(), rowIndex + 1, columnIndex + 1, rowIndex <= 4 ? 10 : 8);
+            }
         }
+        cinema = new Cinema(TOTAL_ROWS, TOTAL_COLUMNS, seats);
     }
 
-
-    @GetMapping("/seats")
-    public Cinema seats() {
+    @GetMapping("seats")
+    Cinema get() {
         return cinema;
     }
 
-    @PostMapping("/return")
-    public ResponseEntity<?> returnTicket(@RequestBody Token token) {
-        Optional<Ticket> ticket = cinema.findTicketByUUID(token.getToken());
-        if (ticket.isPresent() && ticket.get().isPurchased()) {
-            return ResponseEntity.ok(cinema.returnTicket(ticket.get().getIndex()));
-        } else {
-            return ResponseEntity.status(400).body(new Error("Wrong token!"));
-        }
+    @PostMapping("purchase")
+    ResponseEntity<?> purchase(@RequestBody PurchaseForm form) {
+        Object response = cinema.bookSeat(form.getRow(), form.getColumn());
+        return new ResponseEntity(
+                response,
+                new HttpHeaders(),
+                response instanceof Error ? HttpStatus.BAD_REQUEST : HttpStatus.OK)
+        ;
     }
 
-    @PostMapping("/purchase")
-    public ResponseEntity<?> purchase(@RequestBody Place place) {
-        int row = place.getRow();
-        int column = place.getColumn();
-        Optional<Ticket> ticket = cinema.findTicketByRowAndColumn(row, column);
+    @PostMapping("return")
+    ResponseEntity<?> returnTicket(@RequestBody ReturnForm form) {
+        Object response = cinema.unbook(form.getToken());
+        return new ResponseEntity(
+                response,
+                new HttpHeaders(),
+                response instanceof Error ? HttpStatus.BAD_REQUEST : HttpStatus.OK
+        );
+    }
 
-        if (ticket.isPresent()) {
-            if (ticket.get().isPurchased()) {
-                return ResponseEntity.status(400).body(new Error("The ticket has been already purchased!"));
-            }
+    @PostMapping("stats")
+    ResponseEntity<?> stats(@RequestParam(required = false) String password) {
+        Stats stats = cinema.getStats();
+        return password == null || !password.equals("super_secret") ?
+                new ResponseEntity(new Error("The password is wrong!"), new HttpHeaders(), HttpStatus.UNAUTHORIZED) :
+                new ResponseEntity(stats, new HttpHeaders(), HttpStatus.OK);
 
-            cinema.buyTicket(ticket.get().getIndex());
-            return ResponseEntity.ok(ticket.get().toString());
-
-        } else {
-            return ResponseEntity.status(400).body(new Error("The number of a row or a column is out of bounds!"));
-        }
     }
 }
