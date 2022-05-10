@@ -86,7 +86,7 @@ Content-Type: application/json
 ```
 
 ### Returns the movie theatre statistics
-Request parm:\n
+Request parm:
 password = super_secret
 ```
 POST /stats
