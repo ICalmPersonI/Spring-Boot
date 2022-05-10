@@ -86,6 +86,8 @@ Content-Type: application/json
 ```
 
 ### Returns the movie theatre statistics
+Request parm
+password = super_secret
 ```
 POST /stats
 Accept: application/json
@@ -104,5 +106,4 @@ Content-Type: application/json
 {
     "error": "The password is wrong!"
 }
-
 ```
