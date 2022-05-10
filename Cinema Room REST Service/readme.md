@@ -4,9 +4,9 @@
 GET /seats
 Accept: application/json
 Content-Type: application/json
-
-200
-
+```
+## 200
+```
 {
    "total_rows":5,
    "total_columns":6,
@@ -36,9 +36,9 @@ Content-Type: application/json
 POST /purchase
 Accept: application/json
 Content-Type: application/json
-
-200
-
+```
+## 200
+```
 {
     "token": "00ae15f2-1ab6-4a02-a01f-07810b42c0ee",
     "ticket": {
@@ -47,9 +47,9 @@ Content-Type: application/json
         "price": 10
     }
 }
-
-400
-
+```
+## 400
+```
 {
     "error": "The ticket has been already purchased!"
 },
@@ -65,8 +65,9 @@ Content-Type: application/json
 POST /return
 Accept: application/json
 Content-Type: application/json
-
-200
+```
+## 200
+```
 
 {
     "returned_ticket": {
@@ -75,9 +76,9 @@ Content-Type: application/json
         "price": 10
     }
 }
-
-400
-
+```
+## 400
+```
 {
     "error": "Wrong token!"
 }
@@ -89,17 +90,17 @@ Content-Type: application/json
 POST /stats
 Accept: application/json
 Content-Type: application/json
-
-200
-
+```
+## 200
+```
 {
     "current_income": 0,
     "number_of_available_seats": 81,
     "number_of_purchased_tickets": 0
 }
-
-401
-
+```
+## 401
+```
 {
     "error": "The password is wrong!"
 }
