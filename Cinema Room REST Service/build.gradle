@@ -13,6 +13,4 @@ repositories {
 sourceSets.main.resources.srcDirs = ["src/resources"]
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.24'
-
 }
