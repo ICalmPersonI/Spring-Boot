@@ -1,50 +1,37 @@
-package recipes.service;
+package recipes.user;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import recipes.entity.User;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private String userName;
-    private String password;
-    private boolean isActive;
-    private List<GrantedAuthority> authorities;
+    private User user;
 
     public UserDetailsImpl(User user) {
-        this.userName = user.getEmail();
-        this.password = user.getPassword();
-        this.isActive = user.isActive();
-        this.authorities = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        this.user = user;
     }
 
-    public UserDetailsImpl() {}
+    public UserDetailsImpl() {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Collections.emptyList();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-
-        return userName;
+        return user.getEmail();
     }
 
     @Override
@@ -64,8 +51,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive;
+        return true;
     }
-
 }
-

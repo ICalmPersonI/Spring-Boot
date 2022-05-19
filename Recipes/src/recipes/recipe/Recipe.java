@@ -1,50 +1,49 @@
-package recipes.entity;
+package recipes.recipe;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-
 @Data
-@Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "Recipes")
 public class Recipe {
+    @JsonIgnore
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter(AccessLevel.PRIVATE)
-    @Setter
+    @GeneratedValue
     private int id;
-    @Column
+
     @NotBlank
+    @NotNull
     private String name;
-    @Column
+
     @NotBlank
+    @NotNull
     private String category;
-    @Column
-    @Setter
+
+    @LastModifiedDate
     private LocalDateTime date;
-    @Column
+
+    @NotEmpty
     @NotBlank
+    @NotNull
     private String description;
-    @Column
+
     @Size(min = 1)
     @NotNull
     private String[] ingredients;
-    @Column
+
     @Size(min = 1)
     @NotNull
     private String[] directions;
-    @Column
-    @JsonIgnore
-    private String creator;
 
-    public int id() {
-        return id;
-    }
+    @JsonIgnore
+    private String author;
 }
