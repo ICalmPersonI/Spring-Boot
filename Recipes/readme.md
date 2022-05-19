@@ -45,7 +45,7 @@ Example 3: GET /api/recipe/999 request
 ```
 Status code: 404 (Not found)
 ```
-Example 4:DELETE /api/recipe/1 request
+Example 4: DELETE /api/recipe/1 request
 ```
 Status code: 204 (No Content)
 ```
