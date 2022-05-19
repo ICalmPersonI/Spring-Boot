@@ -1,13 +1,13 @@
 ## Endpoints
 
-```POST /api/recipe/new``` receives a recipe as a JSON object and returns a JSON object with one id field. This is a uniquely generated number by which we can identify and retrieve a recipe later. The status code be 200 (Ok);\
-```GET /api/recipe/{id}``` returns a recipe with a specified id as a JSON object (where {id} is the id of a recipe). The server respond with the 200 (Ok) status code. If a recipe with a specified id does not exist, the server respond with 404 (Not found);\
+```POST /api/recipe/new``` receives a recipe as a JSON object and returns a JSON object with one id field;\
+```GET /api/recipe/{id}``` returns a recipe with a specified id as a JSON object (where {id} is the id of a recipe). If a recipe with a specified id does not exist, the server respond with 404 (Not found);\
 ```DELETE /api/recipe/{id}``` endpoint. It deletes a recipe with a specified {id}. The server respond with the 204 (No Content) status code. If a recipe with a specified id does not exist, the server return 404 (Not found);\
-```PUT /api/recipe/{id}``` receives a recipe as a JSON object and updates a recipe with a specified id. Also, update the date field too. The server return the 204 (No Content) status code. If a recipe with a specified id does not exist, the server return 404 (Not found). The server respond with 400 (Bad Request) if a recipe doesn't follow the restrictions indicated above (all fields are required, string fields can't be blank, arrays have at least one item);\
+```PUT /api/recipe/{id}``` receives a recipe as a JSON object and updates a recipe with a specified id;\
 ```GET /api/recipe/search``` takes one of the two mutually exclusive query parameters:
 category – if this parameter is specified, it returns a JSON array of all recipes of the specified category.
 name – if this parameter is specified, it returns a JSON array of all recipes with the names that contain the specified parameter;\
-```POST /api/register``` receives a JSON object with two fields: email (string), and password (string). If a user with a specified email does not exist, the program saves (registers) the user in a database and responds with 200 (Ok). If a user is already in the database, respond with the 400 (Bad Request) status code. Both fields are required.
+```POST /api/register``` receives a JSON object with two fields: email (string), and password (string). If a user with a specified email does not exist, the program saves (registers) the user in a database and responds with 200 (Ok). If a user is already in the database, server respond with the 400 (Bad Request) status code. Both fields are required.
 
 Only an author of a recipe can delete or update a recipe. If a user is not the author of a recipe, but they try to carry out the actions mentioned above, the service respond with the 403 (Forbidden) status code.
 
@@ -35,6 +35,7 @@ Response:
 {
    "name": "Fresh Mint Tea",
    "category": "beverage",
+   "date": "2021-04-06T14:10:54.009725",
    "description": "Light, aromatic and refreshing beverage, ...",
    "ingredients": ["boiled water", "honey", "fresh mint leaves"],
    "directions": ["Boil water", "Pour boiling hot water into a mug", "Add fresh mint leaves", "Mix and let the mint leaves seep for 3-5 minutes", "Add honey and mix again"]
