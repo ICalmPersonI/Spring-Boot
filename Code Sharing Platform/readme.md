@@ -22,13 +22,14 @@ Response: ```{ "id" : "7dc53df5-703e-49b3-8670-b1c468f47f1f" }```.
 Example 2: ```GET /api/code/2187c46e-03ba-4b3a-828b-963466ea348c``` request:
 
 Response:
-
+```
 {
     "code": "Secret code",
     "date": "2020/05/05 12:01:45",
     "time": 4995,
     "views": 4
 }
+```
 
 Example 3: ```GET /code/2187c46e-03ba-4b3a-828b-963466ea348c``` request:
 
