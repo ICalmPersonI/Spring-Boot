@@ -4,7 +4,7 @@
 ```GET api/quizzes/comleted``` returns only 10 comleted quizzes for user at once.\
 ```GET api/quizzes/{id}``` returns quiz by id.\
 ```POST api/quizzes``` create quiz.\
-```POST api/quizzes/{id}/solve``` solve quiz by id. Request parameter ```answer```, type integer array.\
+```POST api/quizzes/{id}/solve``` solve quiz by id. Request parameter ```answer```, type: integer array.\
 ```DELETE api/quizzes/{id}``` delete quiz by id. Delete by id. This can only be done by the author of the quiz.
 
 ## Examples
