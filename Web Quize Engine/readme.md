@@ -9,7 +9,7 @@
 
 ## Examples
 
-Example 1: ```GET api/quizzes```:
+Example 1: ```GET api/quizzes```
 Response:
 ```
 {
@@ -39,7 +39,7 @@ Response:
 }
 ```
 
-Example 3: ```GET api/quizzes/{id}```
+Example 3: ```GET api/quizzes/{id}```\
 Response:
 ```
 {
@@ -69,7 +69,7 @@ Response:
 }
 ```
 
-Example 5: ```POST api/quizzes/{id}/solve```
+Example 5: ```POST api/quizzes/{id}/solve```\
 Response:
 If the passed answer is correct:
 ```
@@ -81,7 +81,7 @@ If the answer is incorrect:
 ```
 If the specified quiz does not exist, the server returns the 404 (Not found) status code.
 
-Example 6: ```DELETE api/quizzes/{id}```
+Example 6: ```DELETE api/quizzes/{id}```\
 If the operation was successful, the service returns the 204 (No content) status code without any content.\
 
 If the specified quiz does not exist, the server returns 404 (Not found). If the specified user is not the author of this quiz, the response is the 403 (Forbidden) status code.
