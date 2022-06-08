@@ -29,12 +29,11 @@ Response:
     "time": 4995,
     "views": 4
 }
-Another request ```GET /api/code/2187c46e-03ba-4b3a-828b-963466ea348c```
 
 Example 3: ```GET /code/2187c46e-03ba-4b3a-828b-963466ea348c``` request:
 
 Response:
-![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%203.jpg?raw=true)
+![ScreenShot](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%203.jpg?raw=true)
 
 
 Example 4: ```GET /api/code/latest``` request:
@@ -60,14 +59,11 @@ Response:
 Example 5 : ```GET /code/latest``` request:
 
 Response:
-![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%205.jpg?raw=true)
-
-
-Example 6
+![ScreenShot](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%205.jpg?raw=true)
 
 Example 6: ```GET /code/new``` request:
 
 Response:
-![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%206.jpg)
+![ScreenShot](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example%206.jpg?raw=true)
 
 
