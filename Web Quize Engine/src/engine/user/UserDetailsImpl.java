@@ -1,22 +1,25 @@
-package engine.authentication;
+package engine.user;
 
-import engine.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
+
     private static final long serialVersionUID = 1L;
 
-    private User user;
+    private final User user;
 
-    public UserDetailsImpl(User user) {
+    UserDetailsImpl(User user) {
         this.user = user;
     }
 
-    public UserDetailsImpl() {}
+    public int getId() {
+        return user.getId();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -25,12 +28,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return this.user.getEmail();
     }
 
     @Override

@@ -1,12 +1,13 @@
-package engine.entity;
+package engine.forms;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Answer {
     private int[] answer;
 
     @JsonCreator
-    Answer(int[] answer) {
+    Answer(@JsonProperty("answer") int[] answer) {
         this.answer = answer;
     }
 

@@ -1,11 +1,13 @@
-package engine.entity;
+package engine.forms;
 
 
-public class Result {
+public class Reply {
+
     private boolean success;
+
     private String feedback;
 
-    public Result(boolean success, String feedback) {
+    public Reply(boolean success, String feedback) {
         this.success = success;
         this.feedback = feedback;
     }
