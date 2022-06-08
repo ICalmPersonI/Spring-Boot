@@ -1,6 +1,6 @@
 ## Endpoints
 
-```GET api/quizzes``` returns only 10 quizzes at once. Reqest parameter ```page``, type: integer.\
+```GET api/quizzes``` returns only 10 quizzes at once. Reqest parameter ```page```, type: integer.\
 ```GET api/quizzes/comleted``` returns only 10 comleted quizzes for user at once.\
 ```GET api/quizzes/{id}``` returns quiz by id.\
 ```POST api/quizzes``` create quiz.\
