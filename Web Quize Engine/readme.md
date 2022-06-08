@@ -4,7 +4,7 @@
 ```GET api/quizzes/comleted``` returns only 10 comleted quizzes for user at once.\
 ```GET api/quizzes/{id}``` returns quiz by id.\
 ```POST api/quizzes``` create quiz.\
-```POST api/quizzes/{id}/solve``` solve quiz by id. Request parameter ```answer``, type integer array.\
+```POST api/quizzes/{id}/solve``` solve quiz by id. Request parameter ```answer```, type integer array.\
 ```DELETE api/quizzes/{id}``` delete quiz by id. Delete by id. This can only be done by the author of the quiz.
 
 ## Examples
@@ -82,7 +82,7 @@ If the answer is incorrect:
 If the specified quiz does not exist, the server returns the 404 (Not found) status code.
 
 Example 6: ```DELETE api/quizzes/{id}```
-If the operation was successful, the service returns the 204 (No content) status code without any content.
+If the operation was successful, the service returns the 204 (No content) status code without any content.\
 
 If the specified quiz does not exist, the server returns 404 (Not found). If the specified user is not the author of this quiz, the response is the 403 (Forbidden) status code.
 
