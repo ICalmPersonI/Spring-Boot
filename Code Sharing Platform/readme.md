@@ -1,11 +1,11 @@
 ## Endpoints
 
-```GET /api/code/N``` returns JSON with the N-th uploaded code snippet.
-```POST /api/code/new``` takes a JSON object with a single field code, use it as the current code snippet, and return JSON with a single field id.
-```GET /api/code/latest`` returns a JSON array with 10 most recently uploaded code snippets sorted from the newest to the oldest.
-```GET /code/N returns``` HTML that contains the N-th uploaded code snippet.
-```GET /code/new``` return HTML. +
-```GET /code/latest``` returns HTML that contains 10 most recently uploaded code snippets.
+```GET /api/code/N``` returns JSON with the N-th uploaded code snippet.\
+```POST /api/code/new``` takes a JSON object with a single field code, use it as the current code snippet, and return JSON with a single field id.\
+```GET /api/code/latest`` returns a JSON array with 10 most recently uploaded code snippets sorted from the newest to the oldest.\
+```GET /code/N returns``` HTML that contains the N-th uploaded code snippet.\
+```GET /code/new``` return HTML.\
+```GET /code/latest``` returns HTML that contains 10 most recently uploaded code snippets.\
 
 ## Examples
 
@@ -34,7 +34,7 @@ Another request ```GET /api/code/2187c46e-03ba-4b3a-828b-963466ea348c```
 Example 3: ```GET /code/2187c46e-03ba-4b3a-828b-963466ea348c``` request:
 
 Response:
-photo
+![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example 3.jpg?raw=true)
 
 
 Example 4: ```GET /api/code/latest``` request:
@@ -60,7 +60,7 @@ Response:
 Example 5 : ```GET /code/latest``` request:
 
 Response:
-photo
+![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example 5.jpg?raw=true)
 
 
 Example 6
@@ -68,7 +68,6 @@ Example 6
 Example 6: ```GET /code/new``` request:
 
 Response:
-
-photo
+![alt text](https://github.com/ICalmPersonI/Spring-Boot/tree/main/Code%20Sharing%20Platform/Example 6.jpg?raw=true)
 
 
