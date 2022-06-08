@@ -5,7 +5,8 @@
 ```GET api/quizzes/{id}``` returns quiz by id.\
 ```POST api/quizzes``` create quiz.\
 ```POST api/quizzes/{id}/solve``` solve quiz by id. Request parameter ```answer```, type: integer array.\
-```DELETE api/quizzes/{id}``` delete quiz by id. Delete by id. This can only be done by the author of the quiz.
+```DELETE api/quizzes/{id}``` delete quiz by id. Delete by id. This can only be done by the author of the quiz.\
+```POST /api/register``` register user.
 
 ## Examples
 
@@ -85,4 +86,20 @@ Example 6: ```DELETE api/quizzes/{id}```\
 If the operation was successful, the service returns the 204 (No content) status code without any content.\
 
 If the specified quiz does not exist, the server returns 404 (Not found). If the specified user is not the author of this quiz, the response is the 403 (Forbidden) status code.
+
+Example 7: ```/api/register``` request with the following body:\
+```
+{
+  "email": "test@gmail.com",
+  "password": "secret"
+}
+```
+The service returns 200 (OK) status code if the registration has been completed successfully.\
+If the email is already taken by another user, the service will return the 400 (Bad request) status code.\
+Here are some additional restrictions to the format of user credentials:\
+the email must have a valid format (with @ and .);\
+the password must have at least five characters.\
+If any of them is not satisfied, the service will also return the 400 (Bad request) status code.\
+All the following operations need a registered user to be successfully completed.
+
 
