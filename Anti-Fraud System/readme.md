@@ -49,11 +49,11 @@ If a request contains wrong data.
 }
 ```
 - HTTP Conflict (409)\
-If the feedback for a specified transaction is already in the database.\
+If the feedback for a specified transaction is already in the database.
 - HTTP Bad Request (400)\
-If the feedback has the wrong format (other than ALLOWED, MANUAL_PROCESSING, PROHIBITED).\
+If the feedback has the wrong format (other than ALLOWED, MANUAL_PROCESSING, PROHIBITED).
 - HTTP Unprocessable Entity (422)\
-If the feedback throws an Exception following the table.\
+If the feedback throws an Exception following the table.
 - HTTP Not Found (404).\
 If the transaction is not found in history.
 
@@ -105,7 +105,7 @@ If the transaction is not found in history.
 }
 ```
 - HTTP Conflict (409)\
-If an IP is already in the database.\
+If an IP is already in the database.
 - HTTP Bad Request (400)\
 If an IP address has the wrong format.
 
@@ -135,7 +135,7 @@ If an IP address has the wrong format.
 }
 ```
 - HTTP Not Found (404)\
-If an IP is not found in the database.\
+If an IP is not found in the database.
 - HTTP Bad Request (400)\
 If an IP address has the wrong format.
 
@@ -155,7 +155,7 @@ If an IP address has the wrong format.
 }
 ```
 - HTTP Conflict (409).\
-If the card number is already in the database.\
+If the card number is already in the database.
 - HTTP Bad Request (400).\
 If a card number has the wrong format.
 
@@ -185,7 +185,7 @@ If a card number has the wrong format.
 }
 ```
 - HTTP Not Found (404)\
-If a card number is not found in the database.\
+If a card number is not found in the database.
 - HTTP Bad Request (400)\
 If a card number follows the wrong format.
 
@@ -210,7 +210,7 @@ If a card number follows the wrong format.
 }
 ```
 - HTTP CONFLICT (409)\
-If an attempt to register an existing user was a failure.\
+If an attempt to register an existing user was a failure.
 - BAD REQUEST (400)\
 If a request contains wrong data.
 
@@ -266,9 +266,9 @@ If a user is not found.
 }
 ````
 - HTTP Not Found (404)\
-If a user is not found.\
+If a user is not found.
 - HTTP Bad Request (400)\
-If a role is not SUPPORT or MERCHANT.\
+If a role is not SUPPORT or MERCHANT.
 - HTTP Conflict (409)\
 If you want to assign a role that has been already provided to a user.
 
@@ -288,7 +288,7 @@ If you want to assign a role that has been already provided to a user.
 }
 ```
 - HTTP Bad Request (400)\
-For safety reasons, ADMINISTRATOR cannot be blocked.\
+For safety reasons, ADMINISTRATOR cannot be blocked.
 - HTTP Not Found (404)\
 If a user is not found.
 
