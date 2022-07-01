@@ -4,7 +4,7 @@ This project demonstrates (in a simplified form) the principles of anti-fraud sy
 # Endpoints
 
 ## Transaction
-```POST /api/antifraud/transaction```
+```POST /api/antifraud/transaction```\
 **Request body:**
 ```
 {
@@ -26,7 +26,7 @@ This project demonstrates (in a simplified form) the principles of anti-fraud sy
 - HTTP Bad Request (400)\
 If a request contains wrong data.
 
-```PUT /api/antifraud/transaction``` adds feedback for a transaction.
+```PUT /api/antifraud/transaction``` adds feedback for a transaction.\
 **Request body:**
 ```
 {
@@ -57,7 +57,7 @@ If the feedback throws an Exception following the table.
 - HTTP Not Found (404).\
 If the transaction is not found in history.
 
-```GET /api/antifraud/history``` shows the transaction history.
+```GET /api/antifraud/history``` shows the transaction history.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -89,7 +89,7 @@ If the transaction is not found in history.
 ```GET /api/antifraud/history/{(String) number}``` ransaction history for a specified card number.
 
 ## Blacklist controller
-```POST /api/antifraud/suspicious-ip``` saves suspicious IP addresses to the database
+```POST /api/antifraud/suspicious-ip``` saves suspicious IP addresses to the database.\
 **Request body:**
 ```
 {
@@ -109,7 +109,7 @@ If an IP is already in the database.
 - HTTP Bad Request (400)\
 If an IP address has the wrong format.
 
-```GET /api/antifraud/suspicious-ip``` shows IP addresses in the database.
+```GET /api/antifraud/suspicious-ip``` shows IP addresses in the database.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -126,7 +126,7 @@ If an IP address has the wrong format.
 ]
 ```
 
-```DELETE /api/antifraud/suspicious-ip/{(String) ip}``` deletes IP addresses from the database.
+```DELETE /api/antifraud/suspicious-ip/{(String) ip}``` deletes IP addresses from the database.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -139,7 +139,7 @@ If an IP is not found in the database.
 - HTTP Bad Request (400)\
 If an IP address has the wrong format.
 
-```POST /api/antifraud/stolencard``` saves stolen card data in the database.
+```POST /api/antifraud/stolencard``` saves stolen card data in the database.\
 **Request body:**
 ```
 {
@@ -159,7 +159,7 @@ If the card number is already in the database.
 - HTTP Bad Request (400).\
 If a card number has the wrong format.
 
-```GET /api/antifraud/stolencard``` shows card numbers stored in the database.
+```GET /api/antifraud/stolencard``` shows card numbers stored in the database.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -176,7 +176,7 @@ If a card number has the wrong format.
 ]
 ```
 
-```DELETE /api/antifraud/stolencard/{(String) number}``` deletes a card number from the database.
+```DELETE /api/antifraud/stolencard/{(String) number}``` deletes a card number from the database.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -190,7 +190,7 @@ If a card number is not found in the database.
 If a card number follows the wrong format.
 
 ## User controller
-```POST /api/auth/user``` registration.
+```POST /api/auth/user``` registration.\
 **Request body:**
 ```
 {
@@ -214,7 +214,7 @@ If an attempt to register an existing user was a failure.
 - BAD REQUEST (400)\
 If a request contains wrong data.
 
-```GET /api/auth/list```
+```GET /api/auth/list```\
 **Response:**
 - HTTP OK (200)
 ```
@@ -235,7 +235,7 @@ If a request contains wrong data.
 ]
 ```
 
-```DELETE /api/auth/user/{(String) username}``` delete user by username.
+```DELETE /api/auth/user/{(String) username}``` delete user by username.\
 **Response:**
 - HTTP OK (200)
 ```
@@ -247,7 +247,7 @@ If a request contains wrong data.
 - HTTP Not Found (404)\
 If a user is not found.
 
-```PUT /api/auth/role``` changes user roles.
+```PUT /api/auth/role``` changes user roles.\
 **Request body:**
 ```
 {
@@ -272,7 +272,7 @@ If a role is not SUPPORT or MERCHANT.
 - HTTP Conflict (409)\
 If you want to assign a role that has been already provided to a user.
 
-```PUT /api/auth/access``` locks/unlocks users
+```PUT /api/auth/access``` locks/unlocks users\
 **Request body:**
 ```
 {
